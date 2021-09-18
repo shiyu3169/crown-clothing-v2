@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router'
+import { Route, Switch, Redirect } from 'react-router'
 import './App.css'
 import Homepage from './pages/homepage/Homepage'
 import Shop from './pages/shop/Shop'
@@ -34,21 +34,36 @@ class App extends Component {
   }
 
   render() {
+    // Don't render actual page before checking auth
+    if (this.props.authLoading) {
+      // TODO: Add a loading screen
+      return <div></div>
+    }
     return (
       <div>
         <Header signOut={this.signOut} />
         <Switch>
           <Route exact path='/' component={Homepage} />
           <Route path='/shop' component={Shop} />
-          <Route path='/login' component={LoginRegister} />
+          <Route
+            path='/login'
+            render={() =>
+              this.props.currentUser ? <Redirect to='/' /> : <LoginRegister />
+            }
+          />
         </Switch>
       </div>
     )
   }
 }
 
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+  authLoading: user.authLoading,
+})
+
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 })
 
-export default connect(null, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)

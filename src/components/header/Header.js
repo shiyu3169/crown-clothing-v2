@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { auth } from '../../firebase/firebase'
 import { setCurrentUser } from '../../redux/user/user.actions'
 
-const Header = ({ currentUser, authLoading }) => {
+const Header = ({ currentUser }) => {
   const signOut = () => {
     auth.signOut()
   }
@@ -22,7 +22,7 @@ const Header = ({ currentUser, authLoading }) => {
         <Link className='option' to='/contact'>
           CONTACT
         </Link>
-        {authLoading ? null : currentUser ? (
+        {currentUser ? (
           <div className='option' onClick={signOut}>
             SIGN OUT
           </div>
@@ -38,7 +38,6 @@ const Header = ({ currentUser, authLoading }) => {
 
 const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
-  authLoading: state.user.authLoading,
 })
 
 const mapDispatchToProps = (dispatch) => ({
