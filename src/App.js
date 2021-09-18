@@ -18,6 +18,13 @@ class App extends Component {
 
   unsubscribeFromAuth = null
 
+  signOut = async () => {
+    await auth.signOut()
+    this.setState({
+      currentUser: null,
+    })
+  }
+
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -43,7 +50,7 @@ class App extends Component {
     const { currentUser } = this.state
     return (
       <div>
-        <Header currentUser={currentUser} />
+        <Header currentUser={currentUser} signOut={this.signOut} />
         <Switch>
           <Route exact path='/' component={Homepage} />
           <Route path='/shop' component={Shop} />
