@@ -1,8 +1,8 @@
-import { initializeApp } from 'firebase/app'
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/firestore'
+import 'firebase/compat/auth'
 
-const firebaseConfig = {
+const config = {
   apiKey: 'AIzaSyCOS3IKhyBoua_aaRB52Z9tvDFTWWQwxMw',
   authDomain: 'e-clothing-8174b.firebaseapp.com',
   databaseURL: 'https://e-clothing-8174b.firebaseio.com',
@@ -13,12 +13,34 @@ const firebaseConfig = {
 }
 
 // Initialize Firebase
-initializeApp(firebaseConfig)
+firebase.initializeApp(config)
 
-export const auth = getAuth()
-export const firestore = getFirestore()
+export const auth = firebase.auth()
+export const firestore = firebase.firestore()
 
-const provider = new GoogleAuthProvider()
+const provider = new firebase.auth.GoogleAuthProvider()
 provider.setCustomParameters({ params: 'select_account' })
+
+export const createUserProfileDocument = async (userAuth, additionalDate) => {
+  if (!userAuth) return
+  const userRef = firestore.doc(`user/${userAuth.uid}`)
+  const snapshot = await userRef.get()
+  if (!snapshot.exists) {
+    const { displayName, email } = userAuth
+    const createdAt = new Date()
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalDate,
+      })
+    } catch (error) {
+      console.log('error creating user', error.message)
+    }
+  }
+  return userRef
+}
+
 export const signInWithGoogle = () =>
-  signInWithPopup(auth, provider).catch((error) => console.log(error))
+  auth.signInWithPopup(provider).catch((error) => console.log(error))
