@@ -2,6 +2,7 @@ import { Route, Switch } from "react-router"
 import "./App.css"
 import Homepage from "./pages/homepage/Homepage"
 import { ROUTE_NAMES } from "./constants/routes"
+import Shop from "./pages/shop/Shop"
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
           path="/"
           component={Homepage}
         />
-        {/* <Route path="/shop/hats" component={} /> */}
+        <Route name={ROUTE_NAMES.SHOP} path="/shop" component={Shop} />
       </Switch>
     </div>
   )

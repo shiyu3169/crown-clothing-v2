@@ -1,3 +1,4 @@
 export const ROUTE_NAMES = {
-  HOMEPAGE: "HOMEPAGE",
+  HOMEPAGE: "Homepage",
+  SHOP: "Shop"
 }
