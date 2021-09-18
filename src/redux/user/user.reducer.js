@@ -1,5 +1,6 @@
 const initialState = {
   currentUser: null,
+  authLoading: true,
 }
 
 const userReducer = (state = initialState, { type, payload }) => {
@@ -8,6 +9,7 @@ const userReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         currentUser: payload,
+        authLoading: false,
       }
     default:
       return state
