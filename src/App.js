@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router'
 import './App.css'
-import Homepage from './pages/homepage/Homepage'
-import Shop from './pages/shop/Shop'
-import Header from './components/header/Header'
-import LoginRegister from './pages/LoginRegister/LoginRegister'
 import { auth, createUserProfileDocument } from './firebase/firebase'
 import { connect } from 'react-redux'
 import { setCurrentUser } from './redux/user/user.actions'
@@ -13,6 +9,12 @@ import {
   selectCurrentUser,
 } from 'redux/user/user.selectors.js'
 import { createStructuredSelector } from 'reselect'
+
+import Homepage from './pages/homepage/Homepage'
+import Checkout from 'pages/checkout/Checkout'
+import Shop from './pages/shop/Shop'
+import Header from './components/header/Header'
+import LoginRegister from './pages/LoginRegister/LoginRegister'
 
 class App extends Component {
   unsubscribeFromAuth = null
@@ -50,7 +52,9 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Homepage} />
           <Route path='/shop' component={Shop} />
+          <Route exact path='/checkout' component={Checkout} />
           <Route
+            exact
             path='/login'
             render={() =>
               this.props.currentUser ? <Redirect to='/' /> : <LoginRegister />
