@@ -12,5 +12,5 @@ export const addItemToCard = (cartItems, cartItemToAdd) => {
   } else {
     cartItems.push({ ...cartItemToAdd, quantity: 1 })
   }
-  return cartItems
+  return [...cartItems]
 }
