@@ -2,11 +2,15 @@ import './CollectionPreview.scss'
 
 import React from 'react'
 import CollectionItem from '../collection_item/CollectionItem'
+import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
 
-const CollectionPreview = ({ title, items }) => {
+const CollectionPreview = ({ match, title, items }) => {
   return (
     <div className='collection-preview'>
-      <h1 className='title'>{title.toUpperCase()}</h1>
+      <Link to={`${match.path}/${title.toLowerCase()}`} className='title'>
+        {title.toUpperCase()}
+      </Link>
       <div className='preview'>
         {items.slice(0, 4).map((item) => (
           <CollectionItem key={item.id} item={item} />
@@ -16,4 +20,4 @@ const CollectionPreview = ({ title, items }) => {
   )
 }
 
-export default CollectionPreview
+export default withRouter(CollectionPreview)
