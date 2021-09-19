@@ -1,6 +1,6 @@
 import React from 'react'
 import './CollectionItem.scss'
-import CustomButton from '../utils/custom_button/CustomButton'
+import CustomButton from '../utils/custom_button/CustomButton.component'
 import { connect } from 'react-redux'
 import { addItem } from '../../redux/cart/cart.actions'
 

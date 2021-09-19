@@ -13,7 +13,7 @@ import { createStructuredSelector } from 'reselect'
 import Homepage from './pages/homepage/Homepage.component'
 import Checkout from 'pages/checkout/Checkout'
 import Shop from './pages/shop/Shop'
-import Header from './components/header/Header'
+import Header from './components/header/Header.component'
 import LoginRegister from './pages/LoginRegister/LoginRegister'
 
 class App extends Component {

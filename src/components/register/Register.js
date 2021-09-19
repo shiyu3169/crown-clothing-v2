@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { auth, createUserProfileDocument } from '../../firebase/firebase.js'
 import FormInput from '../utils/form_input/FormInput.js'
-import CustomButton from '../utils/custom_button/CustomButton.js'
+import CustomButton from '../utils/custom_button/CustomButton.component.js'
 import './Register.scss'
 
 export class Register extends Component {
