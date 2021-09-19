@@ -10,7 +10,7 @@ import {
 } from 'redux/user/user.selectors.js'
 import { createStructuredSelector } from 'reselect'
 
-import Homepage from './pages/homepage/Homepage'
+import Homepage from './pages/homepage/Homepage.component'
 import Checkout from 'pages/checkout/Checkout'
 import Shop from './pages/shop/Shop'
 import Header from './components/header/Header'
