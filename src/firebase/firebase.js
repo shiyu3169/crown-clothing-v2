@@ -60,3 +60,12 @@ export const createUserProfileDocument = async (userAuth, additionalDate) => {
 
 export const signInWithGoogle = () =>
   auth.signInWithPopup(googleProvider).catch((error) => console.log(error))
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      unsubscribe()
+      resolve(userAuth)
+    }, reject)
+  })
+}

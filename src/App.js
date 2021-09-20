@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Switch, Redirect } from 'react-router'
 import './App.css'
 import { connect } from 'react-redux'
@@ -13,8 +13,12 @@ import Checkout from 'pages/checkout/Checkout'
 import Shop from './pages/shop/Shop.component'
 import Header from './components/header/Header.component'
 import LoginRegister from './pages/LoginRegister/LoginRegister'
+import { checkUserSession } from 'redux/user/user.actions'
 
-const App = ({ currentUser }) => {
+const App = ({ currentUser, checkUserSession }) => {
+  useEffect(() => {
+    checkUserSession()
+  }, [checkUserSession])
   return (
     <div>
       <Header />
@@ -37,4 +41,8 @@ const mapStateToProps = createStructuredSelector({
   authLoading: selectAuthLoading,
 })
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = (dispatch) => ({
+  checkUserSession: () => dispatch(checkUserSession()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
