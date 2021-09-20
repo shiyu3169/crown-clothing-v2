@@ -2,7 +2,6 @@ import React from 'react'
 import { ReactComponent as Logo } from '../../assets/icons/logo/crown.svg'
 import { connect } from 'react-redux'
 import { auth } from '../../firebase/firebase'
-import { setCurrentUser } from '../../redux/user/user.actions'
 import CartIcon from '../cart_icon/CartIcon'
 import CartDropdown from '../cart_dropdown/CartDropdown'
 import { createStructuredSelector } from 'reselect'
@@ -46,8 +45,4 @@ const mapStateToProps = createStructuredSelector({
   hidden: selectCartHidden,
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default connect(mapStateToProps)(Header)

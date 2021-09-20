@@ -34,8 +34,8 @@ export const convertCollectionsSnapshotToMap = (collections) => {
 export const auth = firebase.auth()
 export const firestore = firebase.firestore()
 
-const provider = new firebase.auth.GoogleAuthProvider()
-provider.setCustomParameters({ params: 'select_account' })
+export const googleProvider = new firebase.auth.GoogleAuthProvider()
+googleProvider.setCustomParameters({ params: 'select_account' })
 
 export const createUserProfileDocument = async (userAuth, additionalDate) => {
   if (!userAuth) return
@@ -59,4 +59,4 @@ export const createUserProfileDocument = async (userAuth, additionalDate) => {
 }
 
 export const signInWithGoogle = () =>
-  auth.signInWithPopup(provider).catch((error) => console.log(error))
+  auth.signInWithPopup(googleProvider).catch((error) => console.log(error))
