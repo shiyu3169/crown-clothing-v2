@@ -86,8 +86,6 @@ export function* onSignUpStart() {
 export function* signUp({ payload: { email, password, displayName } }) {
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password)
-    // createUserProfileDocument(user, { displayName })
-    // yield put(emailSignInStart({ email, password }))
     yield put(signUpSuccess({ user, additionalData: { displayName } }))
   } catch (error) {
     yield put(signUpFailure(error.message))
