@@ -1,17 +1,16 @@
 import { createStore, applyMiddleware } from 'redux'
 import logger from 'redux-logger'
 import { persistStore } from 'redux-persist'
-import createSagaMiddleware from '@redux-saga/core'
-import rootReducer from './root-reducer'
+import createSagaMiddleware from 'redux-saga'
 
-import { fetchCollectionsAsync } from './shop/shop.sagas'
+import rootReducer from './root-reducer'
+// import { fetchCollectionsStart } from './shop/shop.sagas'
+import rootSaga from './root-saga'
 
 const sagaMiddleware = createSagaMiddleware()
 
-const middlewares = [logger, sagaMiddleware]
+const middlewares = [sagaMiddleware, logger]
 
 export const store = createStore(rootReducer, applyMiddleware(...middlewares))
-
-sagaMiddleware.run(fetchCollectionsAsync)
-
+sagaMiddleware.run(rootSaga)
 export const persistor = persistStore(store)
