@@ -3,8 +3,8 @@ import { takeLatest, call, put, all } from 'redux-saga/effects'
 import {
   fetchCollectionsFailure,
   fetchCollectionsSuccess,
-} from './shop.actions'
-import { shopActionTypes } from './shop.types'
+  fetchCollectionStart,
+} from './shop.reducer'
 
 function* fetchCollectionsAsync() {
   try {
@@ -21,7 +21,7 @@ function* fetchCollectionsAsync() {
 
 function* fetchCollectionsStart() {
   yield takeLatest(
-    shopActionTypes.FETCH_COLLECTIONS_START,
+    fetchCollectionStart,
     fetchCollectionsAsync
   )
 }

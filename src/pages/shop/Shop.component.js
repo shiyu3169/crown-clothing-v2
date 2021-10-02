@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Route } from 'react-router'
 
 import { connect } from 'react-redux'
-import { fetchCollectionStart } from 'redux/shop/shop.actions'
+import { fetchCollectionStart } from 'redux/shop/shop.reducer'
 import CollectionsOverViewContainer from 'components/collection_overview/CollectionOverview.container'
 import CollectionContainer from 'pages/collection/Collection.container'
 

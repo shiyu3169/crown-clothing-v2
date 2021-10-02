@@ -8,7 +8,6 @@ import { reduxBatch } from '@manaflair/redux-batch'
 import rootReducer from './root-reducer'
 // import { fetchCollectionsStart } from './shop/shop.sagas'
 import rootSaga from './root-saga'
-import cartActionTypes from './cart/cart.types'
 
 const sagaMiddleware = createSagaMiddleware()
 
